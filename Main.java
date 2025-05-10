@@ -14,6 +14,7 @@ public class Main {
 		// istatistik bilgileri
 		double totalMassOfCaught = 0;
 		double bestOfTheCaught = 0;
+		int totalAmountOfCaught = 0;
 		double successRate = 0;
 		int inventorySlot = 0;
 		double playerMoney = 0;
@@ -23,6 +24,7 @@ public class Main {
 		// oyun düzenleri
 		int inventoryMaxSlot = 3;
 
+		mainMenu();
 		menuNumber = scanner.nextInt();
 //		MenuManager.startMenuSelect(menuNumber);
 
@@ -66,19 +68,56 @@ public class Main {
 							System.out.println("Şuana kadarki en büyük balığını tuttun. tebrikler");
 						}
 						++inventorySlot; // envanter artışı
+						++totalAmountOfCaught;
 					} else {
 						System.out.println("Envanterin dolu");
+						break;
 					}
 				}
-				System.out.println("Tekrar oynamak ister misin? ([E]vet, [H]ayır)");
+				System.out.println("╔════════════════════════════════════════════════╗");
+				System.out.println("║ Tekrar oynamak ister misin? ([E]vet / [H]ayır) ║");
+				System.out.println("╚════════════════════════════════════════════════╝");
 				tryAgain = scanner.next().trim().toUpperCase();
 				if(tryAgain.equalsIgnoreCase("H")) {
-					System.out.println("Menüye dönülüyor.");
+					returnMainMenu();
 				}
 				
 			} while (tryAgain.equalsIgnoreCase("E"));
+			mainMenu();
+			menuNumber = scanner.nextInt();
+		}
+		
+		if(menuNumber ==2) {
+		    System.out.println("╔════════════════════════════╗");
+		    System.out.println("║        İSTATİSTİKLER       ║");
+		    System.out.println("╚════════════════════════════╝");
+			System.out.println("* Tutulan Balık Adeti: "+totalAmountOfCaught);
+			System.out.println("* Tutulan Balık Kilogramı: "+totalMassOfCaught);
+			System.out.println("* Tutulan En iyi Kilogram: "+bestOfTheCaught);
+			System.out.println("* Envanter: "+inventorySlot+"/"+inventoryMaxSlot);
+		}
+		if(menuNumber == 0) {
+			System.out.println("Çıkış yapılıyor.");
+			System.exit(1);
 		}
 
+	}
+	
+	public static void mainMenu() {
+	    System.out.println("╔══════════════════════════════════════╗");
+	    System.out.println("║              	ANA MENÜ               ║");
+	    System.out.println("╠══════════════════════════════════════╣");
+	    System.out.println("║ 1 - Oyunu Başlat                     ║");
+	    System.out.println("║ 2 - İstatistikler                    ║");
+	    System.out.println("║ 3 - Market                           ║");
+	    System.out.println("║ 0 - Oyunu Durdur                     ║");
+	    System.out.println("╚══════════════════════════════════════╝");
+	}
+	
+	public static void returnMainMenu() {
+		System.out.println("Menüye dönülüyor.");
+		mainMenu();
+		
 	}
 
 }
