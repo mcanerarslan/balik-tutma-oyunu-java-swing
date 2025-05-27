@@ -73,17 +73,20 @@ public class Main {
 				break;
 
 			case 2:
-				System.out.println("╔════════════════════════════════════════════╗");
-				System.out.println("║            OYUNCU İSTATİSTİKLERİ           ║");
-				System.out.println("╚════════════════════════════════════════════╝");
-				System.out.println("Toplam Tutulan Balık Adeti: \t" + totalAmountOfCaught);
-				System.out.println("Toplam Balık Kilogramı: \t" + totalMassOfCaught);
-				System.out.println("En Büyük Balık: \t\t" + bestOfTheCaught);
-				System.out.println("Envanter Durumu (Dolu / Max): \t" + inventorySlot + "/" + inventoryMaxSlot);
+				playerStatus(totalAmountOfCaught, totalMassOfCaught, bestOfTheCaught, inventorySlot, inventoryMaxSlot);
 				break outerLoop;
 
 			case 3:
 				marketMenuMain();
+				menuNumber = scanner.nextInt();
+				switch (menuNumber) {
+				case 1: System.out.println("satıldı");
+				case 2: System.out.println("Olta alındı");
+				case 3:	System.out.println("Slot alındı");
+				case 0: 
+					System.out.println("GERİ DÖNÜLDÜ");
+				
+				}
 				break outerLoop;
 
 			case 0:
@@ -107,6 +110,17 @@ public class Main {
 		System.out.println("╚════════════════════════════════════════════╝");
 	}
 
+	public static void playerStatus(int totalAmountOfCaught, double totalMassOfCaught, double bestOfTheCaught,
+			int inventorySlot, int inventoryMaxSlot) {
+		System.out.println("╔════════════════════════════════════════════╗");
+		System.out.println("║            OYUNCU İSTATİSTİKLERİ           ║");
+		System.out.println("╚════════════════════════════════════════════╝");
+		System.out.println("Toplam Tutulan Balık Adeti: \t" + totalAmountOfCaught);
+		System.out.println("Toplam Balık Kilogramı: \t" + totalMassOfCaught);
+		System.out.println("En Büyük Balık: \t\t" + bestOfTheCaught);
+		System.out.println("Envanter Durumu (Dolu / Max): \t" + inventorySlot + "/" + inventoryMaxSlot);
+	}
+
 	public static void marketMenuMain() {
 		System.out.println("╔════════════════════════════════════════════╗");
 		System.out.println("║                   MARKET                   ║");
@@ -117,6 +131,5 @@ public class Main {
 		System.out.println("║ 0 - Geri Dön                               ║");
 		System.out.println("╚════════════════════════════════════════════╝");
 	}
-	
 
 }
