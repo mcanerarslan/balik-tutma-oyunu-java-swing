@@ -7,29 +7,19 @@ public class Main {
 		int fishingRodType = 1; // Değiştirilebilir
 		Random random = new Random();
 		Scanner scanner = new Scanner(System.in);
+		
+		GameManager gameManager = new GameManager();
 
 		// İstatistik bilgileri
-		double totalMassOfCaught = 0;
-		double bestOfTheCaught = 0;
-		int totalAmountOfCaught = 0;
 		double successRate = 0;
-		int inventorySlot = 0;
 		double playerMoney = 0;
-		int inventoryMaxSlot = 3;
 
 		outerLoop: // döngü dışına çıkmak için label etiket atadık.
 		while (true) {
-			mainMenu();
+			MenuManager.printMainMenu();
 			System.out.print("Bir seçim yapınız: ");
 
-			int menuNumber = -1;
-			if (scanner.hasNextInt()) {
-				menuNumber = scanner.nextInt();
-			} else {
-				System.out.println("Lütfen geçerli bir sayı giriniz.");
-				scanner.next(); // hatalı girdiyi temizle
-				continue;
-			}
+			int menuNumber = getValidInt(scanner);
 
 			switch (menuNumber) {
 			case 1:
@@ -45,19 +35,19 @@ public class Main {
 					default -> System.out.println("Hatalı olta tipi.");
 					}
 
-					if (inventorySlot < inventoryMaxSlot) {
+					if (gameManager.getInventorySlot() < gameManager.getInventoryMaxSlot()) {
 						System.out.println("Balık oltaya takılıyor... 🎣");
 						double changeOfMass = random.nextDouble(10) + 1;
 						double massOfFish = successRate * changeOfMass;
 						System.out.println("Balığı çektin! " + String.format("%.2f", massOfFish) + " kg 🐠");
 
-						totalMassOfCaught += massOfFish;
-						if (bestOfTheCaught < massOfFish) {
-							bestOfTheCaught = massOfFish;
+						gameManager.addToTotalMassOfCaught(massOfFish);
+						if (gameManager.getBestOfTheCaught() < massOfFish) {
+							gameManager.setBestOfTheCaught(massOfFish);
 							System.out.println("Şu ana kadarki en büyük balığını tuttun. Tebrikler!");
 						}
-						inventorySlot++;
-						totalAmountOfCaught++;
+						gameManager.incrementInventorySlot();
+						gameManager.incrementTotalAmountOfCaught();
 					} else {
 						System.out.println("Envanterin dolu.");
 						break;
@@ -73,11 +63,11 @@ public class Main {
 				break;
 
 			case 2:
-				playerStatus(totalAmountOfCaught, totalMassOfCaught, bestOfTheCaught, inventorySlot, inventoryMaxSlot);
+				MenuManager.playerStatus(gameManager.getTotalAmountOfCaught(), gameManager.getTotalMassOfCaught(), gameManager.getBestOfTheCaught(), gameManager.getInventorySlot(), gameManager.getInventoryMaxSlot());
 				break outerLoop;
 
 			case 3:
-				marketMenuMain();
+				MenuManager.marketMenuMain();
 				menuNumber = scanner.nextInt();
 				switch (menuNumber) {
 				case 1: System.out.println("satıldı");
@@ -98,38 +88,15 @@ public class Main {
 			}
 		}
 	}
-
-	public static void mainMenu() {
-		System.out.println("╔════════════════════════════════════════════╗");
-		System.out.println("║                  ANA MENÜ                  ║");
-		System.out.println("╠════════════════════════════════════════════╣");
-		System.out.println("║ 1 - Oyunu Başlat                           ║");
-		System.out.println("║ 2 - İstatistikler                          ║");
-		System.out.println("║ 3 - Market                                 ║");
-		System.out.println("║ 0 - Oyunu Durdur                           ║");
-		System.out.println("╚════════════════════════════════════════════╝");
+	
+	
+	private static int getValidInt(Scanner scanner) {
+		while (!scanner.hasNextInt()) {
+			System.out.println("Lütfen geçerli bir sayı giriniz.");
+			scanner.next(); // invalid input temizle
+		}
+		return scanner.nextInt();
 	}
-
-	public static void playerStatus(int totalAmountOfCaught, double totalMassOfCaught, double bestOfTheCaught,
-			int inventorySlot, int inventoryMaxSlot) {
-		System.out.println("╔════════════════════════════════════════════╗");
-		System.out.println("║            OYUNCU İSTATİSTİKLERİ           ║");
-		System.out.println("╚════════════════════════════════════════════╝");
-		System.out.println("Toplam Tutulan Balık Adeti: \t" + totalAmountOfCaught);
-		System.out.println("Toplam Balık Kilogramı: \t" + totalMassOfCaught);
-		System.out.println("En Büyük Balık: \t\t" + bestOfTheCaught);
-		System.out.println("Envanter Durumu (Dolu / Max): \t" + inventorySlot + "/" + inventoryMaxSlot);
-	}
-
-	public static void marketMenuMain() {
-		System.out.println("╔════════════════════════════════════════════╗");
-		System.out.println("║                   MARKET                   ║");
-		System.out.println("╠════════════════════════════════════════════╣");
-		System.out.println("║ 1 - Envanteri Komple Sat                   ║");
-		System.out.println("║ 2 - Olta Satın Al                          ║");
-		System.out.println("║ 3 - Envanter Slotu Satın Al                ║");
-		System.out.println("║ 0 - Geri Dön                               ║");
-		System.out.println("╚════════════════════════════════════════════╝");
-	}
+	
 
 }
