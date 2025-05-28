@@ -43,5 +43,17 @@ public class MenuManager extends GameManager {
 	void startTheGame() {
 
 	}
+	
+	static void playAgainYesOrNo() {
+		System.out.println("╔════════════════════════════════════════════════╗");
+		System.out.println("║ Tekrar oynamak ister misin? ([E]vet / [H]ayır) ║");
+		System.out.println("╚════════════════════════════════════════════════╝");
+	}
+	
+	public static void fakeClearConsole() {
+	    for (int i = 0; i < 50; i++) {
+	        System.out.println();
+	    }
+	}
 
 }

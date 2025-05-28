@@ -7,24 +7,26 @@ public class Main {
 		int fishingRodType = 1; // Değiştirilebilir
 		Random random = new Random();
 		Scanner scanner = new Scanner(System.in);
-		
+
 		GameManager gameManager = new GameManager();
 
 		// İstatistik bilgileri
 		double successRate = 0;
-		double playerMoney = 0;
+
 
 		outerLoop: // döngü dışına çıkmak için label etiket atadık.
 		while (true) {
+
 			MenuManager.printMainMenu();
 			System.out.print("Bir seçim yapınız: ");
 
-			int menuNumber = getValidInt(scanner);
+			int menuNumber = ControlManager.getValidInt(scanner);
 
 			switch (menuNumber) {
 			case 1:
+				MenuManager.fakeClearConsole();
 				double number = random.nextInt(10) + 1;
-				String tryAgain;
+				String backToMenu;
 
 				do {
 					switch (fishingRodType) {
@@ -39,7 +41,7 @@ public class Main {
 						System.out.println("Balık oltaya takılıyor... 🎣");
 						double changeOfMass = random.nextDouble(10) + 1;
 						double massOfFish = successRate * changeOfMass;
-						System.out.println("Balığı çektin! " + String.format("%.2f", massOfFish) + " kg 🐠");
+						System.out.printf("Balığı çektin! %.2f kg 🐠\n", massOfFish);
 
 						gameManager.addToTotalMassOfCaught(massOfFish);
 						if (gameManager.getBestOfTheCaught() < massOfFish) {
@@ -53,31 +55,41 @@ public class Main {
 						break;
 					}
 
-					System.out.println("╔════════════════════════════════════════════════╗");
-					System.out.println("║ Tekrar oynamak ister misin? ([E]vet / [H]ayır) ║");
-					System.out.println("╚════════════════════════════════════════════════╝");
-					tryAgain = scanner.next().trim().toUpperCase();
+					MenuManager.playAgainYesOrNo();
 
-				} while (tryAgain.equals("E") || tryAgain.equals("EVET"));
+				} while (ControlManager.getValidString(scanner));
 
 				break;
 
 			case 2:
-				MenuManager.playerStatus(gameManager.getTotalAmountOfCaught(), gameManager.getTotalMassOfCaught(), gameManager.getBestOfTheCaught(), gameManager.getInventorySlot(), gameManager.getInventoryMaxSlot());
-				break outerLoop;
+				MenuManager.fakeClearConsole();
+				MenuManager.playerStatus(gameManager.getTotalAmountOfCaught(), gameManager.getTotalMassOfCaught(),
+						gameManager.getBestOfTheCaught(), gameManager.getInventorySlot(),
+						gameManager.getInventoryMaxSlot());
+				System.out.println("\n[ q ] tuşuna basarak menüye dönebilirsiniz.");
+				do {
+					backToMenu = scanner.nextLine().trim().toLowerCase();
+				} while (!backToMenu.equals("q"));
+				break;
 
 			case 3:
 				MenuManager.marketMenuMain();
 				menuNumber = scanner.nextInt();
 				switch (menuNumber) {
-				case 1: System.out.println("satıldı");
-				case 2: System.out.println("Olta alındı");
-				case 3:	System.out.println("Slot alındı");
-				case 0: 
+				case 1: System.out.println("satıldı");break;
+				case 2:
+					System.out.println("Olta alındı");
+					break;
+				case 3:
+					System.out.println("Slot alındı");
+					break;
+				case 0:
 					System.out.println("GERİ DÖNÜLDÜ");
-				
+					break;
+				default:
+					System.out.println("Geçersiz seçim.");
 				}
-				break outerLoop;
+				break;
 
 			case 0:
 				System.out.println("Çıkış yapılıyor.");
@@ -88,15 +100,5 @@ public class Main {
 			}
 		}
 	}
-	
-	
-	private static int getValidInt(Scanner scanner) {
-		while (!scanner.hasNextInt()) {
-			System.out.println("Lütfen geçerli bir sayı giriniz.");
-			scanner.next(); // invalid input temizle
-		}
-		return scanner.nextInt();
-	}
-	
 
 }

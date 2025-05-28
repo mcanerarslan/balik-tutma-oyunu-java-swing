@@ -1,5 +1,5 @@
 
-public class GameManager {
+public class GameManager extends PlayerBase {
 
 	private double totalMassOfCaught = 0;
 	private double bestOfTheCaught = 0;
