@@ -8,9 +8,26 @@ public class Main {
 		Random random = new Random();
 		Scanner scanner = new Scanner(System.in);
 
-		GameManager gameManager = new GameManager();
+		GameManager gameManager;
+		PlayerStats stats;
 
-		// İstatistik bilgileri
+		PlayerStats loadedStats = SaveAndQuitTheGame.loadPlayerStats();
+
+		if (loadedStats != null) {
+		    gameManager = new GameManager(
+		        loadedStats.getTotalMassOfCaught(),
+		        loadedStats.getBestOfTheCaught(),
+		        loadedStats.getTotalAmountOfCaught(),
+		        loadedStats.getPlayerMoney(),
+		        loadedStats.getInventorySlot(),
+		        loadedStats.getInventoryMaxSlot()
+		    );
+		} else {
+		    gameManager = new GameManager(0.0, 0.0, 0, 100.0, 0, 3); // varsayılan değerler
+		}
+
+		stats = new PlayerStats(gameManager);
+		// İstatistik bilgileri	
 		double successRate = 0;
 
 
@@ -92,8 +109,10 @@ public class Main {
 				break;
 
 			case 0:
-				System.out.println("Çıkış yapılıyor.");
-				System.exit(0);
+			    System.out.println("Çıkış yapılıyor.");
+			    stats = new PlayerStats(gameManager); // güncel verilerle yeni PlayerStats oluştur
+			    SaveAndQuitTheGame.savePlayerStats(stats);
+			    System.exit(0);
 
 			default:
 				System.out.println("Hatalı seçim. Lütfen tekrar deneyin.");

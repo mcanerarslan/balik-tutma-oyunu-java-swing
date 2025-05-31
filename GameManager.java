@@ -8,14 +8,15 @@ public class GameManager extends PlayerBase {
 	private int inventorySlot = 0;
 	private double playerMoney = 0;
 	private int inventoryMaxSlot = 3;
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public GameManager(double totalMassOfCaught, double bestOfTheCaught, int totalAmountCaught, double playerMoney, int inventorySlot, int inventoryMaxSlot) {
+		this.totalMassOfCaught = totalMassOfCaught;
+		this.bestOfTheCaught = bestOfTheCaught;
+		this.totalAmountOfCaught = totalAmountCaught;
+		this.playerMoney = playerMoney;
+		this.inventorySlot = inventorySlot;
+		this.inventoryMaxSlot = inventoryMaxSlot;
+	}
 
 	public double getTotalMassOfCaught() {
 		return totalMassOfCaught;
