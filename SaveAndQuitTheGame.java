@@ -98,6 +98,12 @@ public class SaveAndQuitTheGame {
 	}
 	
 	public static void savePlayerStats(PlayerStats stats) {
+		
+	    File directory = new File(System.getProperty("user.dir") + File.separator + "save");
+	    if (!directory.exists()) {
+	        directory.mkdir();
+	    }
+	    
 	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(getSaveFilePath()))) {
 	        writer.write(stats.getTotalMassOfCaught() + "\n");
 	        writer.write(stats.getBestOfTheCaught() + "\n");
