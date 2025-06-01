@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 *.class
+=======
+/*.class
+>>>>>>> market
 .classpath
 .project
 .settings/

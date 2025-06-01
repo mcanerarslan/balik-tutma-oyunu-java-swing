@@ -1,11 +1,5 @@
 
-public class MenuManager extends GameManager {
-
-	int selectedMenuNumber;
-
-	public MenuManager() {
-
-	}
+public class MenuManager{
 
 	static void printMainMenu() {
 		System.out.println("╔════════════════════════════════════════════╗");
@@ -18,30 +12,30 @@ public class MenuManager extends GameManager {
 		System.out.println("╚════════════════════════════════════════════╝");
 	}
 
-	static void marketMenuMain() {
+	static void marketMenuMain(double playerMoney,double first,double second,double third) {
 		System.out.println("╔════════════════════════════════════════════╗");
-		System.out.println("║                   MARKET                   ║");
+		System.out.printf("║             MARKET - %.2f TL             ║\n",playerMoney);
 		System.out.println("╠════════════════════════════════════════════╣");
-		System.out.println("║ 1 - Envanteri Komple Sat                   ║");
-		System.out.println("║ 2 - Olta Satın Al                          ║");
-		System.out.println("║ 3 - Envanter Slotu Satın Al                ║");
+		System.out.printf("║ 1 - Envanteri Sat\t(%.2f TL)\t     ║\n",first);
+		System.out.printf("║ 2 - Olta Yükselt\t(%.2f TL)\t     ║\n",second);
+		System.out.printf("║ 3 - Depo Yükselt\t(%.2f TL)\t     ║\n",third);
 		System.out.println("║ 0 - Geri Dön                               ║");
 		System.out.println("╚════════════════════════════════════════════╝");
 	}
 
 	static void playerStatus(int totalAmountOfCaught, double totalMassOfCaught, double bestOfTheCaught,
-			int inventorySlot, int inventoryMaxSlot) {
+			int inventorySlot, int inventoryMaxSlot,int currentlyTotalAmountOfCaught, double currentlyTotalMassOfCaught,double playerMoney) {
 		System.out.println("╔════════════════════════════════════════════╗");
 		System.out.println("║            OYUNCU İSTATİSTİKLERİ           ║");
+		System.out.println("╠════════════════════════════════════════════╝");
+		System.out.printf("║ Toplam Bakiye:\t\t%.2f\tTL\n", playerMoney);
+		System.out.printf("║ Toplam Tutulan Balık Adeti:\t%d\tAdet\n", totalAmountOfCaught);
+		System.out.printf("║ Toplam Tutulan Kütle:\t\t%.2f\tkg\n", totalMassOfCaught);
+		System.out.printf("║ En Büyük Balık:\t\t%.2f\tkg\n", bestOfTheCaught);
+//		System.out.printf("║ Slottaki Balık Adeti:\t\t%d\n", currentlyTotalAmountOfCaught);
+		System.out.printf("║ Slottaki Balık Kilo:\t\t%.2f\tkg\n", currentlyTotalMassOfCaught);
+		System.out.printf("║ Envanter Durumu (Dolu / Max):\t%d / %d\n", inventorySlot, inventoryMaxSlot);
 		System.out.println("╚════════════════════════════════════════════╝");
-		System.out.println("Toplam Tutulan Balık Adeti: \t" + totalAmountOfCaught);
-		System.out.println("Toplam Balık Kilogramı: \t" + totalMassOfCaught);
-		System.out.println("En Büyük Balık: \t\t" + bestOfTheCaught);
-		System.out.println("Envanter Durumu (Dolu / Max): \t" + inventorySlot + "/" + inventoryMaxSlot);
-	}
-
-	void startTheGame() {
-
 	}
 	
 	static void playAgainYesOrNo() {
