@@ -25,6 +25,11 @@ public class ControlManager {
 		scanner.nextLine(); // satır sonunu temizle
 		return value;
 	}
+	
+	static void waitForAction() {
+		System.out.println("\nDevam etmek için \"ENTER\" tuşana basın...");
+		new Scanner(System.in).nextLine(); // enter bekler
+	}
 
 }
 

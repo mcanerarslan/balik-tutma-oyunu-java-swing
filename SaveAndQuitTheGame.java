@@ -27,10 +27,10 @@ public class SaveAndQuitTheGame {
             double money = Double.parseDouble(reader.nextLine());
             int slot = Integer.parseInt(reader.nextLine());
             int maxSlot = Integer.parseInt(reader.nextLine());
+            int currentlyAmount = Integer.parseInt(reader.nextLine());
             double currentlyTotalMass = Double.parseDouble(reader.nextLine());
-            double currentlyAmount = Double.parseDouble(reader.nextLine());
 
-            return new PlayerStats(totalMass, bestFish, amount, money, slot, maxSlot,currentlyTotalMass,currentlyAmount);
+            return new PlayerStats(totalMass, bestFish, amount, money, slot, maxSlot,currentlyAmount,currentlyTotalMass);
 
         } catch (IOException | NumberFormatException e) {
             System.err.println("HATA - Kayıt okunamadı: " + e.getMessage());
@@ -100,6 +100,12 @@ public class SaveAndQuitTheGame {
 	}
 	
 	public static void savePlayerStats(PlayerStats stats) {
+		
+	    File directory = new File(System.getProperty("user.dir") + File.separator + "save");
+	    if (!directory.exists()) {
+	        directory.mkdir();
+	    }
+		
 	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(getSaveFilePath()))) {
 	        writer.write(stats.getTotalMassOfCaught() + "\n");
 	        writer.write(stats.getBestOfTheCaught() + "\n");

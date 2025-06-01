@@ -1,5 +1,3 @@
-import java.lang.classfile.Superclass;
-
 public class PlayerStats extends GameManager {
 
 	private double totalMassOfCaught;
@@ -9,7 +7,7 @@ public class PlayerStats extends GameManager {
 	private double playerMoney;
 	private int inventoryMaxSlot;
 	
-	private double currentlyTotalAmountOfCaught;
+	private int currentlyTotalAmountOfCaught;
 	private double currentlyTotalMassOfCaught;
 
 	public PlayerStats(GameManager gm) {
@@ -27,13 +25,18 @@ public class PlayerStats extends GameManager {
 	}
 	
 	
-	public PlayerStats(double totalMass, double bestFish, int amount, double money, int slot, int maxSlot,double currentlyTotalMass, double currentlyAmount) {
-	    super(totalMass, bestFish, amount, money, slot, maxSlot,currentlyTotalMass,currentlyAmount);
+	public PlayerStats(double totalMass, double bestFish, int amount, double money, int slot, int maxSlot, int currentlyAmount,double currentlyTotalMass) {
+	    super(totalMass, bestFish, amount, money, slot, maxSlot,currentlyAmount,currentlyTotalMass);
 	}
 
 
-	public static void saveStats() {
-		
+	public void printStats() {
+		System.out.println("Toplam Tutulan Balık Adeti: \t" + totalAmountOfCaught);
+		System.out.println("Toplam Balık Kilogramı: \t" + totalMassOfCaught);
+		System.out.println("En Büyük Balık: \t\t" + bestOfTheCaught);
+		System.out.println("Envanter Durumu (Dolu / Max): \t" + inventorySlot + "/" + inventoryMaxSlot);
+		System.out.println("Güncel Tutulan Balık Adeti: \t" + currentlyTotalAmountOfCaught);
+		System.out.println("Güncel Balık Kilogramı: \t" + currentlyTotalMassOfCaught);
 	}
 
 }

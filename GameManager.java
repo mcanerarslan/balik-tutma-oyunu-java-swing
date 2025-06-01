@@ -1,5 +1,5 @@
 
-public class GameManager extends PlayerBase {
+public class GameManager extends GameMechanicsBase {
 
 	private double totalMassOfCaught = 0;
 	private double bestOfTheCaught = 0;
@@ -8,12 +8,13 @@ public class GameManager extends PlayerBase {
 	private double playerMoney = 0;
 	private int inventorySlot = 0;
 	private int inventoryMaxSlot = 3;
-	
-	private double currentlyTotalAmountOfCaught;
+
+	private int currentlyTotalAmountOfCaught;
 	private double currentlyTotalMassOfCaught;
 
-
-	public GameManager(double totalMassOfCaught, double bestOfTheCaught, int totalAmountCaught, double playerMoney, int inventorySlot, int inventoryMaxSlot,double currentlyTotalAmountOfCaught,double currentlyTotalMassOfCaught) {
+	public GameManager(double totalMassOfCaught, double bestOfTheCaught, int totalAmountCaught, double playerMoney,
+			int inventorySlot, int inventoryMaxSlot, int currentlyTotalAmountOfCaught,
+			double currentlyTotalMassOfCaught) {
 		this.totalMassOfCaught = totalMassOfCaught;
 		this.bestOfTheCaught = bestOfTheCaught;
 		this.totalAmountOfCaught = totalAmountCaught;
@@ -23,7 +24,7 @@ public class GameManager extends PlayerBase {
 		this.currentlyTotalAmountOfCaught = currentlyTotalAmountOfCaught;
 		this.currentlyTotalMassOfCaught = currentlyTotalMassOfCaught;
 	}
-	
+
 	public void resetStats() {
 		this.totalMassOfCaught = 0;
 		this.bestOfTheCaught = 0;
@@ -87,14 +88,6 @@ public class GameManager extends PlayerBase {
 		this.inventorySlot++;
 	}
 
-	public double getPlayerMoney() {
-		return playerMoney;
-	}
-
-	public void setPlayerMoney(double playerMoney) {
-		this.playerMoney = playerMoney;
-	}
-
 	public int getInventoryMaxSlot() {
 		return inventoryMaxSlot;
 	}
@@ -103,18 +96,14 @@ public class GameManager extends PlayerBase {
 		this.inventoryMaxSlot = inventoryMaxSlot;
 	}
 
-	public double getCurrentlyTotalAmountOfCaught() {
+	public int getCurrentlyTotalAmountOfCaught() {
 		return currentlyTotalAmountOfCaught;
 	}
-	
-	public void addCurrentlyTotalAmountOfCaught(double mass) {
-		this.currentlyTotalAmountOfCaught += mass;
-	}
 
-	public void setCurrentlyTotalAmountOfCaught(double currentlyTotalAmountOfCaught) {
+	public void setCurrentlyTotalAmountOfCaught(int currentlyTotalAmountOfCaught) {
 		this.currentlyTotalAmountOfCaught = currentlyTotalAmountOfCaught;
 	}
-	
+
 	public void incrementCurrentlyTotalAmountOfCaught() {
 		this.currentlyTotalAmountOfCaught++;
 	}
@@ -126,5 +115,31 @@ public class GameManager extends PlayerBase {
 	public void setCurrentlyTotalMassOfCaught(double currentlyTotalMassOfCaught) {
 		this.currentlyTotalMassOfCaught = currentlyTotalMassOfCaught;
 	}
+
+	public void addCurrentlyTotalMassOfCaught(double mass) {
+		this.currentlyTotalMassOfCaught += mass;
+	}
+
+	// market
+
+	public double getPlayerMoney() {
+		return playerMoney;
+	}
+
+	public void setPlayerMoney(double playerMoney) {
+		this.playerMoney = playerMoney;
+	}
+
+	public void increasePlayerMoney(double value) {
+		this.playerMoney += value;
+	}
+
+	public void decreasePlayerMoney(double value) {
+		this.playerMoney -= value;
+	}
+	
+	
+	
+	
 
 }
