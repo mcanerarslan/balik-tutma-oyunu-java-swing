@@ -1,1 +1,7 @@
-/GameMechanicsBase.class
+/*.class
+.classpath
+.project
+.settings/
+.DS_Store
+bin/
+target/
