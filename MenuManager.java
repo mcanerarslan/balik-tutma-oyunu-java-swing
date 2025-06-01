@@ -18,13 +18,13 @@ public class MenuManager{
 		System.out.println("╚════════════════════════════════════════════╝");
 	}
 
-	static void marketMenuMain() {
+	static void marketMenuMain(double playerMoney,double first,double second,double third) {
 		System.out.println("╔════════════════════════════════════════════╗");
-		System.out.println("║                   MARKET                   ║");
+		System.out.printf("║             MARKET - %.2f TL             ║\n",playerMoney);
 		System.out.println("╠════════════════════════════════════════════╣");
-		System.out.println("║ 1 - Envanteri Sat                          ║");
-		System.out.println("║ 2 - Olta Yükseltmesi Al (yakında)          ║");
-		System.out.println("║ 3 - Depo Kapasitesi Yükselt Al             ║");
+		System.out.printf("║ 1 - Envanteri Sat\t(%.2f TL)\t     ║\n",first);
+		System.out.printf("║ 2 - Olta Yükselt\t(%.2f TL)\t     ║\n",second);
+		System.out.printf("║ 3 - Depo Yükselt\t(%.2f TL)\t     ║\n",third);
 		System.out.println("║ 0 - Geri Dön                               ║");
 		System.out.println("╚════════════════════════════════════════════╝");
 	}

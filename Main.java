@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		int fishingRodType = 1; // Değiştirilecek
+
 		Random random = new Random();
 		Scanner scanner = new Scanner(System.in);
 
@@ -17,10 +17,11 @@ public class Main {
 			gameManager = new GameManager(loadedStats.getTotalMassOfCaught(), loadedStats.getBestOfTheCaught(),
 					loadedStats.getTotalAmountOfCaught(), loadedStats.getPlayerMoney(), loadedStats.getInventorySlot(),
 					loadedStats.getInventoryMaxSlot(), loadedStats.getCurrentlyTotalAmountOfCaught(), // adet
-					loadedStats.getCurrentlyTotalMassOfCaught() // kütle
+					loadedStats.getCurrentlyTotalMassOfCaught(), // kütle
+					loadedStats.getFishingRodType()
 			);
 		} else {
-			gameManager = new GameManager(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0); // varsayılan değerler
+			gameManager = new GameManager(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0,1); // varsayılan değerler
 		}
 
 		stats = new PlayerStats(gameManager);
@@ -44,7 +45,7 @@ public class Main {
 				String backToMenu;
 
 				do {
-					switch (fishingRodType) {
+					switch (gameManager.getFishingRodType()) {
 					case 1 -> successRate = number * 0.3;
 					case 2 -> successRate = number * 0.5;
 					case 3 -> successRate = number * 0.7;
@@ -95,20 +96,19 @@ public class Main {
 
 			case 3:
 				MenuManager.fakeClearConsole();
-				MenuManager.marketMenuMain();
+				MenuManager.marketMenuMain(gameManager.getPlayerMoney(),marketManager.showTotalPriceForSell(),marketManager.showUpgradeFishinRodPrice(),marketManager.showBuyExtraSlotPrice());
 				menuNumber = scanner.nextInt();
 				switch (menuNumber) {
 				case 1:
 					marketManager.sellAll();
 					break;
 				case 2:
-					System.out.println("Olta alındı");
+					marketManager.upgradeFishingRod();
 					break;
 				case 3:
 					marketManager.buyExtraSlot();
 					break;
 				case 0:
-					System.out.println("GERİ DÖNÜLDÜ");
 					break;
 				default:
 					System.out.println("Geçersiz seçim.");

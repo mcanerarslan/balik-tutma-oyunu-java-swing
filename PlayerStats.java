@@ -9,10 +9,12 @@ public class PlayerStats extends GameManager {
 	
 	private int currentlyTotalAmountOfCaught;
 	private double currentlyTotalMassOfCaught;
+	
+	private int fishingRodType;
 
 	public PlayerStats(GameManager gm) {
 		super(gm.getTotalMassOfCaught(), gm.getBestOfTheCaught(), gm.getTotalAmountOfCaught(), 
-				gm.getPlayerMoney(),gm.getInventorySlot(), gm.getInventoryMaxSlot(),gm.getCurrentlyTotalAmountOfCaught(),gm.getCurrentlyTotalMassOfCaught());
+				gm.getPlayerMoney(),gm.getInventorySlot(), gm.getInventoryMaxSlot(),gm.getCurrentlyTotalAmountOfCaught(),gm.getCurrentlyTotalMassOfCaught(),gm.getFishingRodType());
 		
 	    this.totalMassOfCaught = gm.getTotalMassOfCaught();
 	    this.bestOfTheCaught = gm.getBestOfTheCaught();
@@ -22,11 +24,12 @@ public class PlayerStats extends GameManager {
 	    this.inventoryMaxSlot = gm.getInventoryMaxSlot();
 	    this.currentlyTotalAmountOfCaught = gm.getCurrentlyTotalAmountOfCaught();
 	    this.currentlyTotalMassOfCaught = gm.getCurrentlyTotalMassOfCaught();
+	    this.fishingRodType = gm.getFishingRodType();
 	}
 	
 	
-	public PlayerStats(double totalMass, double bestFish, int amount, double money, int slot, int maxSlot, int currentlyAmount,double currentlyTotalMass) {
-	    super(totalMass, bestFish, amount, money, slot, maxSlot,currentlyAmount,currentlyTotalMass);
+	public PlayerStats(double totalMass, double bestFish, int amount, double money, int slot, int maxSlot, int currentlyAmount,double currentlyTotalMass,int fishingRodType) {
+	    super(totalMass, bestFish, amount, money, slot, maxSlot,currentlyAmount,currentlyTotalMass,fishingRodType);
 	}
 
 

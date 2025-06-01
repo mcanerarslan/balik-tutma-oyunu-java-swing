@@ -11,10 +11,12 @@ public class GameManager extends GameMechanicsBase {
 
 	private int currentlyTotalAmountOfCaught;
 	private double currentlyTotalMassOfCaught;
+	
+	private int fishingRodType = 1;
 
 	public GameManager(double totalMassOfCaught, double bestOfTheCaught, int totalAmountCaught, double playerMoney,
 			int inventorySlot, int inventoryMaxSlot, int currentlyTotalAmountOfCaught,
-			double currentlyTotalMassOfCaught) {
+			double currentlyTotalMassOfCaught,int fishingRodType) {
 		this.totalMassOfCaught = totalMassOfCaught;
 		this.bestOfTheCaught = bestOfTheCaught;
 		this.totalAmountOfCaught = totalAmountCaught;
@@ -23,6 +25,7 @@ public class GameManager extends GameMechanicsBase {
 		this.inventoryMaxSlot = inventoryMaxSlot;
 		this.currentlyTotalAmountOfCaught = currentlyTotalAmountOfCaught;
 		this.currentlyTotalMassOfCaught = currentlyTotalMassOfCaught;
+		this.fishingRodType = fishingRodType;
 	}
 
 	public void resetStats() {
@@ -34,6 +37,7 @@ public class GameManager extends GameMechanicsBase {
 		this.inventoryMaxSlot = 3;
 		this.setCurrentlyTotalAmountOfCaught(0);
 		this.setCurrentlyTotalMassOfCaught(0);
+		this.fishingRodType = 1;
 	}
 
 	public double getTotalMassOfCaught() {
@@ -136,6 +140,14 @@ public class GameManager extends GameMechanicsBase {
 
 	public void decreasePlayerMoney(double value) {
 		this.playerMoney -= value;
+	}
+
+	public int getFishingRodType() {
+		return fishingRodType;
+	}
+
+	public void setFishingRodType(int fishingRodType) {
+		this.fishingRodType = fishingRodType;
 	}
 	
 	

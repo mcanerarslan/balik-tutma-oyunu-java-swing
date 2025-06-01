@@ -4,6 +4,7 @@ public class GameMechanicsBase {
 	private double playerMoney;
 	private double extraSlotPrice;
 	protected final int MAX_SLOT_LIMIT = 10; // Sabit slot sınırı
+	protected final int MAX_FISHING_ROD_TYPE = 4;
 	
 	GameMechanicsBase(){
 		playerMoney = 150;
