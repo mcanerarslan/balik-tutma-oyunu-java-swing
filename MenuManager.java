@@ -1,5 +1,5 @@
 
-public class MenuManager extends GameManager {
+public class MenuManager{
 
 	int selectedMenuNumber;
 
@@ -30,7 +30,7 @@ public class MenuManager extends GameManager {
 	}
 
 	static void playerStatus(int totalAmountOfCaught, double totalMassOfCaught, double bestOfTheCaught,
-			int inventorySlot, int inventoryMaxSlot) {
+			int inventorySlot, int inventoryMaxSlot,double currentlyTotalAmountOfCaught, double currentlyTotalMassOfCaught) {
 		System.out.println("╔════════════════════════════════════════════╗");
 		System.out.println("║            OYUNCU İSTATİSTİKLERİ           ║");
 		System.out.println("╚════════════════════════════════════════════╝");
@@ -38,6 +38,9 @@ public class MenuManager extends GameManager {
 		System.out.println("Toplam Balık Kilogramı: \t" + totalMassOfCaught);
 		System.out.println("En Büyük Balık: \t\t" + bestOfTheCaught);
 		System.out.println("Envanter Durumu (Dolu / Max): \t" + inventorySlot + "/" + inventoryMaxSlot);
+		System.out.println("Güncel Tutulan Balık Adeti: \t" + currentlyTotalAmountOfCaught);
+		System.out.println("Güncel Balık Kilogramı: \t" + currentlyTotalMassOfCaught);
+		System.out.println("╚════════════════════════════════════════════╝");
 	}
 
 	void startTheGame() {

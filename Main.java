@@ -4,11 +4,12 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		int fishingRodType = 1; // Değiştirilebilir
+		int fishingRodType = 1; // Değiştirilecek 
 		Random random = new Random();
 		Scanner scanner = new Scanner(System.in);
 
 		GameManager gameManager;
+		MarketManager marketManager = new MarketManager();
 		PlayerStats stats;
 
 		PlayerStats loadedStats = SaveAndQuitTheGame.loadPlayerStats();
@@ -20,10 +21,12 @@ public class Main {
 		        loadedStats.getTotalAmountOfCaught(),
 		        loadedStats.getPlayerMoney(),
 		        loadedStats.getInventorySlot(),
-		        loadedStats.getInventoryMaxSlot()
+		        loadedStats.getInventoryMaxSlot(),
+		        loadedStats.getCurrentlyTotalAmountOfCaught(),
+		        loadedStats.getCurrentlyTotalMassOfCaught()
 		    );
 		} else {
-		    gameManager = new GameManager(0.0, 0.0, 0, 100.0, 0, 3); // varsayılan değerler
+		    gameManager = new GameManager(0.0, 0.0, 0, 100.0, 0, 3,0,0); // varsayılan değerler
 		}
 
 		stats = new PlayerStats(gameManager);
@@ -61,12 +64,16 @@ public class Main {
 						System.out.printf("Balığı çektin! %.2f kg 🐠\n", massOfFish);
 
 						gameManager.addToTotalMassOfCaught(massOfFish);
+						gameManager.addCurrentlyTotalAmountOfCaught(massOfFish);
+						
 						if (gameManager.getBestOfTheCaught() < massOfFish) {
 							gameManager.setBestOfTheCaught(massOfFish);
 							System.out.println("Şu ana kadarki en büyük balığını tuttun. Tebrikler!");
 						}
 						gameManager.incrementInventorySlot();
 						gameManager.incrementTotalAmountOfCaught();
+						gameManager.incrementCurrentlyTotalAmountOfCaught();
+						
 					} else {
 						System.out.println("Envanterin dolu.");
 						break;
@@ -82,7 +89,7 @@ public class Main {
 				MenuManager.fakeClearConsole();
 				MenuManager.playerStatus(gameManager.getTotalAmountOfCaught(), gameManager.getTotalMassOfCaught(),
 						gameManager.getBestOfTheCaught(), gameManager.getInventorySlot(),
-						gameManager.getInventoryMaxSlot());
+						gameManager.getInventoryMaxSlot(),gameManager.getCurrentlyTotalAmountOfCaught(),gameManager.getCurrentlyTotalAmountOfCaught());
 				System.out.println("\n[ q ] tuşuna basarak menüye dönebilirsiniz.");
 				do {
 					backToMenu = scanner.nextLine().trim().toLowerCase();
@@ -93,7 +100,7 @@ public class Main {
 				MenuManager.marketMenuMain();
 				menuNumber = scanner.nextInt();
 				switch (menuNumber) {
-				case 1: System.out.println("satıldı");break;
+				case 1: marketManager.sellAll();break;
 				case 2:
 					System.out.println("Olta alındı");
 					break;
@@ -107,11 +114,15 @@ public class Main {
 					System.out.println("Geçersiz seçim.");
 				}
 				break;
+				
+			case 99:
+				gameManager.resetStats();
 
 			case 0:
 			    System.out.println("Çıkış yapılıyor.");
 			    stats = new PlayerStats(gameManager); // güncel verilerle yeni PlayerStats oluştur
 			    SaveAndQuitTheGame.savePlayerStats(stats);
+				scanner.close();
 			    System.exit(0);
 
 			default:
