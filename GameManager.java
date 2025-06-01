@@ -4,7 +4,6 @@ public class GameManager extends GameMechanicsBase {
 	private double totalMassOfCaught = 0;
 	private double bestOfTheCaught = 0;
 	private int totalAmountOfCaught = 0;
-//	private double successRate = 0;
 	private double playerMoney = 0;
 	private int inventorySlot = 0;
 	private int inventoryMaxSlot = 3;
@@ -35,8 +34,8 @@ public class GameManager extends GameMechanicsBase {
 		this.playerMoney = 0;
 		this.inventorySlot = 0;
 		this.inventoryMaxSlot = 3;
-		this.setCurrentlyTotalAmountOfCaught(0);
-		this.setCurrentlyTotalMassOfCaught(0);
+		this.currentlyTotalAmountOfCaught = 0;
+		this.currentlyTotalMassOfCaught = 0;
 		this.fishingRodType = 1;
 	}
 
@@ -72,13 +71,6 @@ public class GameManager extends GameMechanicsBase {
 		this.totalAmountOfCaught++;
 	}
 
-//	public double getSuccessRate() {
-//		return successRate;
-//	}
-//
-//	public void setSuccessRate(double successRate) {
-//		this.successRate = successRate;
-//	}
 
 	public int getInventorySlot() {
 		return inventorySlot;

@@ -1,12 +1,6 @@
 
 public class MenuManager{
 
-	int selectedMenuNumber;
-
-	public MenuManager() {
-
-	}
-
 	static void printMainMenu() {
 		System.out.println("╔════════════════════════════════════════════╗");
 		System.out.println("║                  ANA MENÜ                  ║");
@@ -42,10 +36,6 @@ public class MenuManager{
 		System.out.printf("║ Slottaki Balık Kilo:\t\t%.2f\tkg\n", currentlyTotalMassOfCaught);
 		System.out.printf("║ Envanter Durumu (Dolu / Max):\t%d / %d\n", inventorySlot, inventoryMaxSlot);
 		System.out.println("╚════════════════════════════════════════════╝");
-	}
-
-	void startTheGame() {
-
 	}
 	
 	static void playAgainYesOrNo() {

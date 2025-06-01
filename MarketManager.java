@@ -2,16 +2,15 @@ import java.util.Scanner;
 
 public class MarketManager extends GameMechanicsBase {
 
-	private double totalMassOfCaught;
-	private double bestOfTheCaught;
-	private int totalAmountOfCaught;
-//	private double successRate = 0;
-	private double playerMoney;
-	private int inventorySlot;
-	private int inventoryMaxSlot;
-
-	private int currentlyTotalAmountOfCaught;
-	private double currentlyTotalMassOfCaught;
+// 	private double totalMassOfCaught;
+// 	private double bestOfTheCaught;
+// 	private int totalAmountOfCaught;
+//  private double successRate = 0;
+// 	private double playerMoney;
+// 	private int inventorySlot;
+// 	private int inventoryMaxSlot;
+// 	private int currentlyTotalAmountOfCaught;
+// 	private double currentlyTotalMassOfCaught;
 
 	private GameManager gameManager;
 
@@ -19,16 +18,14 @@ public class MarketManager extends GameMechanicsBase {
 		this.gameManager = gameManager;
 	}
 
-	public static void buyNewSlotLimit() {
-
-	}
+	Scanner scanner = new Scanner(System.in);
 
 	public void sellAll() {
 		double mass = gameManager.getCurrentlyTotalMassOfCaught();
 		int count = gameManager.getCurrentlyTotalAmountOfCaught();
 
 		if (mass > 0 && count > 0) {
-			double earnedMoney = mass * 0.69;
+			double earnedMoney = mass * gameManager.PRICE_PER_KG;
 			gameManager.increasePlayerMoney(earnedMoney); // önerilen metod
 			System.out.printf("Tüm balıkları sattın. Kazanç: %.2f ₺\n", earnedMoney);
 
@@ -36,10 +33,10 @@ public class MarketManager extends GameMechanicsBase {
 			gameManager.setCurrentlyTotalMassOfCaught(0);
 			gameManager.setInventorySlot(0);
 
-			ControlManager.waitForAction();
+			ControlManager.waitForAction(scanner);
 		} else {
 			System.out.println("Satacak balığın yok.");
-			ControlManager.waitForAction();
+			ControlManager.waitForAction(scanner);
 		}
 	}
 
@@ -48,22 +45,22 @@ public class MarketManager extends GameMechanicsBase {
 		int currentSlotSize = gameManager.getInventoryMaxSlot();
 		final int maxSlotLimit = gameManager.MAX_SLOT_LIMIT;
 
-		double currentExtraSlotPrice = 100 + (gameManager.getInventoryMaxSlot() - 3) * 50;
+		double currentExtraSlotPrice = gameManager.BASE_SLOT_PRICE + (gameManager.getInventoryMaxSlot() - 3) * 50;
 
 		if (currentSlotSize >= maxSlotLimit) {
 			System.out.println("Maksimum slot limitine ulaştınız. Daha fazla slot alınamaz.");
-			
-			ControlManager.waitForAction();
+
+			ControlManager.waitForAction(scanner);
 		} else if (gameManager.getPlayerMoney() < currentExtraSlotPrice) {
 			System.out.println("Yetersiz bakiye. Slot satın alınamadı.");
-			ControlManager.waitForAction();
+			ControlManager.waitForAction(scanner);
 		} else {
 			gameManager.decreasePlayerMoney(currentExtraSlotPrice); // ücret alımı
 			gameManager.setInventoryMaxSlot(currentSlotSize + 1); // slot artışı
 			System.out.println("Yeni slot başarıyla alındı!");
 			System.out.printf("Yeni envanter kapasiteniz: %d/%d\n", gameManager.getInventorySlot(),
-			gameManager.getInventoryMaxSlot());
-			ControlManager.waitForAction();
+					gameManager.getInventoryMaxSlot());
+			ControlManager.waitForAction(scanner);
 		}
 
 	}
@@ -78,19 +75,20 @@ public class MarketManager extends GameMechanicsBase {
 
 		if (currentFishingRodType >= maxFishingRodType) {
 			System.out.println("Maksimum olta türüne ulaştınız. Daha fazla yükseltme alınamaz.");
-			ControlManager.waitForAction();
+			ControlManager.waitForAction(scanner);
 		} else if (gameManager.getPlayerMoney() < currentUpgradeRodPrice) {
 			System.out.println("Yetersiz bakiye. Olta yükseltmesi satın alınamadı.");
-			ControlManager.waitForAction();
+			ControlManager.waitForAction(scanner);
 		} else {
 			gameManager.decreasePlayerMoney(currentUpgradeRodPrice); // ücret alımı
 			gameManager.setFishingRodType(currentFishingRodType + 1); // olta artışı
 			System.out.println("Yeni olta başarıyla alındı!");
-			
-			System.out.println(gameManager.getFishingRodType());
 
 			String rodName;
 			switch (gameManager.getFishingRodType()) {
+			case 1:
+				rodName = "Basit";
+				break;
 			case 2:
 				rodName = "Amatör";
 				break;
@@ -101,12 +99,13 @@ public class MarketManager extends GameMechanicsBase {
 				rodName = "Efsanevi";
 				break;
 			default:
-				rodName = "Basit"; break;
+				rodName = "Bilinmiyor";
+				break;
 			}
 			System.out.printf("Yeni oltanız: %s\n", rodName);
-			
-			ControlManager.waitForAction();
-			
+
+			ControlManager.waitForAction(scanner);
+
 		}
 
 	}
@@ -116,14 +115,14 @@ public class MarketManager extends GameMechanicsBase {
 		return currentExtraSlotPrice;
 	}
 
-	public double showUpgradeFishinRodPrice() {
+	public double showUpgradeFishingRodPrice() {
 		double currentUpgradeRodPrice = (1000 + (gameManager.getFishingRodType() + 1) * 500)
 				* gameManager.getFishingRodType();
 		return currentUpgradeRodPrice;
 	}
 
 	public double showTotalPriceForSell() {
-		double price = gameManager.getCurrentlyTotalMassOfCaught() * 0.69;
+		double price = gameManager.getCurrentlyTotalMassOfCaught() * gameManager.PRICE_PER_KG;
 		return price;
 	}
 

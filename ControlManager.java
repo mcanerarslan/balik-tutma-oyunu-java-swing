@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
 public class ControlManager {
-	static String input;
 
-	static boolean getValidString(Scanner scanner) {
+
+	static boolean askYesOrNo(Scanner scanner) {
+		String input;
 		while (true) {
 			input = scanner.nextLine().trim().toUpperCase();
 			if (input.equals("E") || input.equals("EVET")) {
@@ -16,19 +17,19 @@ public class ControlManager {
 		}
 	}
 
-	static int getValidInt(Scanner scanner) {
+	static int askForInteger(Scanner scanner) {
 		while (!scanner.hasNextInt()) {
 			System.out.println("Lütfen geçerli bir sayı giriniz.");
-			scanner.next(); // hatalı girişi temizle
+			scanner.next(); // Geçersiz girişten gelen metni temizler
 		}
 		int value = scanner.nextInt();
-		scanner.nextLine(); // satır sonunu temizle
+		scanner.nextLine(); // sayıdan sonra gelen satırı temizler
 		return value;
 	}
 	
-	static void waitForAction() {
+	static void waitForAction(Scanner scanner) {
 		System.out.println("\nDevam etmek için \"ENTER\" tuşana basın...");
-		new Scanner(System.in).nextLine(); // enter bekler
+	    scanner.nextLine();
 	}
 
 }

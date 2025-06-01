@@ -36,7 +36,7 @@ public class Main {
 			MenuManager.printMainMenu();
 			System.out.print("Bir seçim yapınız: ");
 
-			int menuNumber = ControlManager.getValidInt(scanner);
+			int menuNumber = ControlManager.askForInteger(scanner);
 
 			switch (menuNumber) {
 			case 1:
@@ -72,13 +72,13 @@ public class Main {
 						gameManager.incrementCurrentlyTotalAmountOfCaught(); // satış sonrası adet artıyor
 
 					} else {
-						ControlManager.waitForAction();
+						ControlManager.waitForAction(scanner);
 						break;
 					}
 
 					MenuManager.playAgainYesOrNo();
 
-				} while (ControlManager.getValidString(scanner));
+				} while (ControlManager.askYesOrNo(scanner));
 
 				break;
 
@@ -96,7 +96,7 @@ public class Main {
 
 			case 3:
 				MenuManager.fakeClearConsole();
-				MenuManager.marketMenuMain(gameManager.getPlayerMoney(),marketManager.showTotalPriceForSell(),marketManager.showUpgradeFishinRodPrice(),marketManager.showBuyExtraSlotPrice());
+				MenuManager.marketMenuMain(gameManager.getPlayerMoney(),marketManager.showTotalPriceForSell(),marketManager.showUpgradeFishingRodPrice(),marketManager.showBuyExtraSlotPrice());
 				menuNumber = scanner.nextInt();
 				switch (menuNumber) {
 				case 1:
