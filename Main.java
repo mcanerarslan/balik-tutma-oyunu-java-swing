@@ -10,7 +10,11 @@ import javax.swing.JLabel;
 public class Main {
 
 	public static void main(String[] args) {
-		Game game = new Game();
+//		Game game = SaveAndQuitTheGame.loadPlayerStats();
+//        if (game == null) {
+//        	game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0); // varsayılan değerler
+//        }
+        Game game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0);
 		JFrame frame = new JFrame("Fishing Village");
 
 		JButton btn1 = new JButton("Oyunu Başlat");

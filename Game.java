@@ -21,6 +21,19 @@ public class Game {
 	private int currentlyTotalAmountOfCaught;
 	private double currentlyTotalMassOfCaught;
 	
+	public Game(double totalMassOfCaught, double bestOfTheCaught, int totalAmountCaught, double playerMoney,
+			int inventorySlot, int inventoryMaxSlot, int currentlyTotalAmountOfCaught,
+			double currentlyTotalMassOfCaught) {
+		this.totalMassOfCaught = totalMassOfCaught;
+		this.bestOfTheCaught = bestOfTheCaught;
+		this.totalAmountOfCaught = totalAmountCaught;
+		this.playerMoney = playerMoney;
+		this.inventorySlot = inventorySlot;
+		this.inventoryMaxSlot = inventoryMaxSlot;
+		this.currentlyTotalAmountOfCaught = currentlyTotalAmountOfCaught;
+		this.currentlyTotalMassOfCaught = currentlyTotalMassOfCaught;
+	}
+	
 	public double startFishing() {
 //			taskManager.checkTasks();
 		double massOfFish = 0;
@@ -51,6 +64,17 @@ public class Game {
 
 //			MenuManager.playAgainYesOrNo();
 
+	}
+	
+	public void resetStats() {
+		this.totalMassOfCaught = 0;
+		this.bestOfTheCaught = 0;
+		this.totalAmountOfCaught = 0;
+		this.playerMoney = 0;
+		this.inventorySlot = 0;
+		this.inventoryMaxSlot = 3;
+		this.currentlyTotalAmountOfCaught = 0;
+		this.currentlyTotalMassOfCaught = 0;
 	}
 
 	public double getTotalMassOfCaught() {
