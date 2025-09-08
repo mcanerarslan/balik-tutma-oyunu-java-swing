@@ -32,7 +32,7 @@ public class Main {
 				backButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						fishingAreaFrame.dispose(); // pencereyi kapatı
+						fishingAreaFrame.dispose(); // pencereyi kapatır
 					}
 				});
 				backButton.setBounds(125, 400, 150, 30);
