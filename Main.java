@@ -1,3 +1,4 @@
+
 //
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,14 +7,20 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import java.util.Random;
+import java.util.Scanner;
+
+
 public class Main {
 
 	public static void main(String[] args) {
+
 //		Game game = SaveAndQuitTheGame.loadPlayerStats();
 //        if (game == null) {
 //        	game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0); // varsayılan değerler
 //        }
-        Game game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0);
+//        Game game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0);
+		Game game;
 		JFrame frame = new JFrame("Fishing Village");
 
 		JButton btn1 = new JButton("Oyunu Başlat");
@@ -233,3 +240,4 @@ public class Main {
 	}
 
 }
+
