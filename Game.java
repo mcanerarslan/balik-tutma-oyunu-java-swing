@@ -8,7 +8,7 @@ public class Game {
 	Scanner scanner = new Scanner(System.in);
 //	TaskManager taskManager = new TaskManager(this);
 	
-	private Inventory inventory = new Inventory();
+//	private Inventory inventory = new Inventory();
 
 	private double totalMassOfCaught = 0;
 	private double bestOfTheCaught = 0;
@@ -168,14 +168,6 @@ public class Game {
 
 	public void decreasePlayerMoney(double value) {
 		this.playerMoney -= value;
-	}
-
-	public Inventory getInventory() {
-		return inventory;
-	}
-
-	public void setInventory(Inventory inventory) {
-		this.inventory = inventory;
 	}
 
 }

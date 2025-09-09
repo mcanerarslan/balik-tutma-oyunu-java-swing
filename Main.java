@@ -19,8 +19,7 @@ public class Main {
 //        if (game == null) {
 //        	game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0); // varsayılan değerler
 //        }
-//        Game game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0);
-		Game game;
+        Game game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0);
 		JFrame frame = new JFrame("Fishing Village");
 
 		JButton btn1 = new JButton("Oyunu Başlat");
@@ -180,15 +179,15 @@ public class Main {
 
 				JLabel label1 = new JLabel();
 				label1.setBounds(150, 150, 150, 30);
-				label1.setText("Envanteri Sat: " + Inventory.test());
+				label1.setText("Envanteri Sat: " + "");
 
 				JLabel label2 = new JLabel();
 				label2.setBounds(150, 180, 150, 30);
-				label2.setText("Olta Yükselt: " + Inventory.test());
+				label2.setText("Olta Yükselt: " + "");
 
 				JLabel label3 = new JLabel();
 				label3.setBounds(150, 210, 150, 30);
-				label3.setText("Depo Yükselt: " + Inventory.test());
+				label3.setText("Depo Yükselt: "+ "");
 
 				JButton backButton = new JButton("Geri Dön");
 				backButton.addActionListener(new ActionListener() {
