@@ -1,0 +1,46 @@
+# Derleme çıktı klasörleri
+/bin/
+/build/
+/out/
+/target/
+
+# Paketleme dosyaları
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Derleme dosyaları
+*.class
+
+# IDE ayar dosyaları
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Log dosyaları
+*.log
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
