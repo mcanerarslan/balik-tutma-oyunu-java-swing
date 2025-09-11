@@ -1,25 +1,28 @@
 
 //
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import java.util.Random;
-import java.util.Scanner;
-
+import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-//		Game game = SaveAndQuitTheGame.loadPlayerStats();
-//        if (game == null) {
-//        	game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0); // varsayılan değerler
-//        }
-        Game game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0);
+
+		final Game game;
+		if (SaveAndQuitTheGame.loadPlayerStats() != null) {
+		    game = SaveAndQuitTheGame.loadPlayerStats();
+		} else {
+		    game = new Game(0.0, 0.0, 0, 100.0, 0, 3, 0, 0.0);
+		}
+		
 		JFrame frame = new JFrame("Fishing Village");
 
 		JButton btn1 = new JButton("Oyunu Başlat");
@@ -32,15 +35,6 @@ public class Main {
 
 				JLabel denemeJLabel = new JLabel("");
 				denemeJLabel.setBounds(10, 10, 200, 30);
-
-				JButton backButton = new JButton("Ana Menü");
-				backButton.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						fishingAreaFrame.dispose(); // pencereyi kapatır
-					}
-				});
-				backButton.setBounds(125, 400, 150, 30);
 
 				JButton catchFishAgain = new JButton("Olta At");
 				catchFishAgain.addActionListener(new ActionListener() {
@@ -57,7 +51,7 @@ public class Main {
 				});
 				catchFishAgain.setBounds(275, 10, 120, 30);
 
-				fishingAreaFrame.add(backButton);
+				fishingAreaFrame.add(createBackButton(fishingAreaFrame, game));
 				fishingAreaFrame.add(catchFishAgain);
 				fishingAreaFrame.add(denemeJLabel);
 
@@ -97,7 +91,6 @@ public class Main {
 				label4.setBounds(115, 150, 300, 30);
 				label4.setText("En Büyük Balık: " + game.getBestOfTheCaught());
 
-
 				JLabel label5 = new JLabel();
 				label5.setBounds(115, 185, 300, 30);
 				label5.setText("Slottaki Kilo: " + game.getCurrentlyTotalMassOfCaught());
@@ -106,14 +99,10 @@ public class Main {
 				label6.setBounds(115, 220, 300, 30);
 				label6.setText("Envanter (Dolu/Max): " + game.getInventorySlot() + "/" + game.getInventoryMaxSlot());
 
-				JButton backButton = new JButton("Geri Dön");
-				backButton.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						statsFrame.dispose(); // pencereyi kapatı
-					}
-				});
-				backButton.setBounds(125, 400, 150, 30);
+				JProgressBar slotBar = new JProgressBar(0, game.getInventoryMaxSlot());
+				slotBar.setBounds(130, 245, 140, 30);
+				slotBar.setValue(game.getInventorySlot());
+				slotBar.setStringPainted(true);
 
 				JButton reloadButton = new JButton("Güncelle");
 				reloadButton.setBounds(300, 10, 90, 30);
@@ -127,7 +116,9 @@ public class Main {
 						label5.setText("Slottaki Kilo: " + game.getCurrentlyTotalMassOfCaught());
 						label6.setText(
 								"Envanter (Dolu/Max): " + game.getInventorySlot() + "/" + game.getInventoryMaxSlot());
-						System.out.println("İstatistikler Güncellendi.");
+						slotBar.setValue(game.getInventorySlot());
+
+						System.out.println("İstatistikler Güncellendi. - Düzgün Çalışmıyor");
 					}
 				});
 
@@ -136,14 +127,17 @@ public class Main {
 				resetStatsButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						game.setPlayerMoney(100);
-						game.setTotalAmountOfCaught(0);
-						game.setTotalMassOfCaught(0);
-						game.setBestOfTheCaught(0);
-						game.setCurrentlyTotalAmountOfCaught(0);
-						game.setCurrentlyTotalMassOfCaught(0);
-						game.setInventorySlot(0);
-						game.setInventoryMaxSlot(3);
+//						game.setPlayerMoney(100);
+//						game.setTotalAmountOfCaught(0);
+//						game.setTotalMassOfCaught(0);
+//						game.setBestOfTheCaught(0);
+//						game.setCurrentlyTotalAmountOfCaught(0);
+//						game.setCurrentlyTotalMassOfCaught(0);
+//						game.setInventorySlot(0);
+//						game.setInventoryMaxSlot(3);
+
+						game.resetStats();
+
 						label1.setText("Toplam Bakiye: " + game.getPlayerMoney());
 						label2.setText("Toplam Tutulan Balık Adeti: " + game.getTotalAmountOfCaught());
 						label3.setText("Toplam Tutulan Kütle: " + game.getTotalMassOfCaught());
@@ -151,6 +145,7 @@ public class Main {
 						label5.setText("Slottaki Kilo: " + game.getCurrentlyTotalMassOfCaught());
 						label6.setText(
 								"Envanter (Dolu/Max): " + game.getInventorySlot() + "/" + game.getInventoryMaxSlot());
+						slotBar.setValue(0);
 						System.out.println("İstatistikler Sıfırlandı.");
 					}
 				});
@@ -162,9 +157,11 @@ public class Main {
 				statsFrame.add(label5);
 				statsFrame.add(label6);
 
-				statsFrame.add(backButton);
+				statsFrame.add(createBackButton(statsFrame, game));
 				statsFrame.add(reloadButton);
 				statsFrame.add(resetStatsButton);
+
+				statsFrame.add(slotBar);
 				statsFrame.setLayout(null);
 				statsFrame.setVisible(true);
 			}
@@ -177,31 +174,60 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				JFrame marketFrame = new JFrame("Market");
 
-				JLabel label1 = new JLabel();
-				label1.setBounds(150, 150, 150, 30);
-				label1.setText("Envanteri Sat: " + "");
+				JLabel infoLabel = new JLabel();
+				infoLabel.setBounds(100, 10, 400, 30);
 
-				JLabel label2 = new JLabel();
-				label2.setBounds(150, 180, 150, 30);
-				label2.setText("Olta Yükselt: " + "");
-
-				JLabel label3 = new JLabel();
-				label3.setBounds(150, 210, 150, 30);
-				label3.setText("Depo Yükselt: "+ "");
-
-				JButton backButton = new JButton("Geri Dön");
-				backButton.addActionListener(new ActionListener() {
+				JButton button1 = new JButton("Envanteri Sat");
+				button1.setBounds(140, 150, 120, 30);
+				button1.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						marketFrame.dispose(); // pencereyi kapatı
+						int secim = JOptionPane.showConfirmDialog(marketFrame,
+								"Bu işlemi yapmak istediğinizden emin misiniz?", "Onay", JOptionPane.YES_NO_OPTION);
+						if (secim == JOptionPane.YES_OPTION) { // Cevap evet ise
+							infoLabel.setText("Satış işlemi başarıyla gerçekleştirildi.");
+						} else {
+							infoLabel.setText("Satiş işlemi iptal edildi.");
+						}
+
 					}
 				});
-				backButton.setBounds(125, 400, 150, 30);
 
-				marketFrame.add(label1);
-				marketFrame.add(label2);
-				marketFrame.add(label3);
-				marketFrame.add(backButton);
+				JButton button2 = new JButton("Olta Yükselt");
+				button2.setBounds(140, 180, 120, 30);
+				button2.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JFrame upgradeFishingRodFrame = new JFrame("Olta Kategorisi");
+
+						upgradeFishingRodFrame.add(createBackButton(upgradeFishingRodFrame, game));
+						upgradeFishingRodFrame.setSize(400, 500);
+						upgradeFishingRodFrame.setLayout(null);
+						upgradeFishingRodFrame.setVisible(true);
+
+					}
+				});
+
+				JButton button3 = new JButton("Depo Yükselt");
+				button3.setBounds(140, 210, 120, 30);
+				button3.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JFrame upgradeSlotFrame = new JFrame("Depo Kategorisi");
+
+						upgradeSlotFrame.add(createBackButton(upgradeSlotFrame, game));
+						upgradeSlotFrame.setSize(400, 500);
+						upgradeSlotFrame.setLayout(null);
+						upgradeSlotFrame.setVisible(true);
+
+					}
+				});
+
+				marketFrame.add(infoLabel);
+				marketFrame.add(button1);
+				marketFrame.add(button2);
+				marketFrame.add(button3);
+				marketFrame.add(createBackButton(marketFrame, game));
 				marketFrame.setSize(400, 500);
 				marketFrame.setLayout(null);
 				marketFrame.setVisible(true);
@@ -217,7 +243,7 @@ public class Main {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				SaveAndQuitTheGame.savePlayerStats(game);
 				System.exit(0);
 			}
 		});
@@ -238,5 +264,14 @@ public class Main {
 
 	}
 
-}
+	private static JButton createBackButton(JFrame frame, Game game) {
+		JButton backButton = new JButton("Geri Dön");
+		backButton.setBounds(125, 400, 150, 30);
+		backButton.addActionListener(e -> {
+			SaveAndQuitTheGame.savePlayerStats(game);
+			frame.dispose();// pencereyi kapatır
+		});
+		return backButton;
+	}
 
+}

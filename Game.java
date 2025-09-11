@@ -69,12 +69,17 @@ public class Game {
 		this.totalMassOfCaught = 0;
 		this.bestOfTheCaught = 0;
 		this.totalAmountOfCaught = 0;
-		this.playerMoney = 0;
+		this.playerMoney = 100;
 		this.inventorySlot = 0;
 		this.inventoryMaxSlot = 3;
 		this.currentlyTotalAmountOfCaught = 0;
 		this.currentlyTotalMassOfCaught = 0;
 	}
+	
+//	public void autoSave(Game stats) {
+//		SaveAndQuitTheGame.savePlayerStats(stats);
+//		System.out.println("autosave");
+//	}
 
 	public double getTotalMassOfCaught() {
 		return totalMassOfCaught;
