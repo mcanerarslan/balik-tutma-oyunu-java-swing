@@ -55,6 +55,7 @@ public class SaveAndQuitTheGame {
 	        writer.write(stats.getInventoryMaxSlot() + "\n");
 	        writer.write(stats.getCurrentlyTotalAmountOfCaught() + "\n");
 	        writer.write(stats.getCurrentlyTotalMassOfCaught() + "\n");
+	        writer.write(stats.getInventoryFishingRodType() + "\n");
 
 	        System.out.println("Log - Oyuncu verileri başarıyla kaydedildi.");
 	    } catch (IOException e) {
@@ -79,8 +80,9 @@ public class SaveAndQuitTheGame {
             int maxSlot = Integer.parseInt(reader.nextLine());
             int currentlyAmount = Integer.parseInt(reader.nextLine());
             double currentlyTotalMass = Double.parseDouble(reader.nextLine());
+            int fishingRodType = Integer.parseInt(reader.nextLine());
 
-            return new Game(totalMass, bestFish, amount, money, slot, maxSlot,currentlyAmount,currentlyTotalMass);
+            return new Game(totalMass, bestFish, amount, money, slot, maxSlot,currentlyAmount,currentlyTotalMass,fishingRodType);
 
         } catch (IOException | NumberFormatException e) {
             System.err.println("HATA - Kayıt okunamadı: " + e.getMessage());

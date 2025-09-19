@@ -6,10 +6,9 @@ public class Game {
 	
 	Random random = new Random();
 	Scanner scanner = new Scanner(System.in);
-//	TaskManager taskManager = new TaskManager(this);
 	
-//	private Inventory inventory = new Inventory();
-
+	private Inventory inventory = new Inventory();
+	
 	private double totalMassOfCaught = 0;
 	private double bestOfTheCaught = 0;
 	private int totalAmountOfCaught = 0;
@@ -22,7 +21,7 @@ public class Game {
 	
 	public Game(double totalMassOfCaught, double bestOfTheCaught, int totalAmountCaught, double playerMoney,
 			int inventorySlot, int inventoryMaxSlot, int currentlyTotalAmountOfCaught,
-			double currentlyTotalMassOfCaught) {
+			double currentlyTotalMassOfCaught,int fishingRodType) {
 		this.totalMassOfCaught = totalMassOfCaught;
 		this.bestOfTheCaught = bestOfTheCaught;
 		this.totalAmountOfCaught = totalAmountCaught;
@@ -31,17 +30,15 @@ public class Game {
 		this.inventoryMaxSlot = inventoryMaxSlot;
 		this.currentlyTotalAmountOfCaught = currentlyTotalAmountOfCaught;
 		this.currentlyTotalMassOfCaught = currentlyTotalMassOfCaught;
+		inventory.setFishingRodType(fishingRodType);
 	}
 	
 	public double startFishing() {
-//			taskManager.checkTasks();
 		double massOfFish = 0;
 			if (getInventorySlot() < getInventoryMaxSlot()) {
-//				System.out.println("Balık oltaya takılıyor... 🎣");
-//				ControlManager.showFishingAnimation();
+				
 				double number = random.nextInt(100) + 1;
-				massOfFish = number;
-//				double massOfFish = number * inventory.getSuccessRate();
+				massOfFish = number* inventory.getFishingRodType();
 				System.out.printf("Balığı çektin! %.2f kg 🐠\n", massOfFish);
 
 				addToTotalMassOfCaught(massOfFish);
@@ -51,18 +48,13 @@ public class Game {
 					setBestOfTheCaught(massOfFish);
 					System.out.println("Şu ana kadarki en büyük balığını tuttun. Tebrikler!");
 				}
-
 				incrementInventorySlot(); // slottan bir yer azalıyor
 				incrementTotalAmountOfCaught(); // genel adet artıyor
 				incrementCurrentlyTotalAmountOfCaught(); // satış sonrası adet artıyor
 			} else {
-//				ControlManager.waitForAction(scanner, "Envanter Dolu. Markete giderek satabilirsin.");
-				System.out.println("Envanter DOLDU GECİCİ HATA");
+				System.out.println("HATA - Envanter Dolu!");
 			}
 			return massOfFish;
-
-//			MenuManager.playAgainYesOrNo();
-
 	}
 	
 	public void resetStats() {
@@ -75,11 +67,6 @@ public class Game {
 		this.currentlyTotalAmountOfCaught = 0;
 		this.currentlyTotalMassOfCaught = 0;
 	}
-	
-//	public void autoSave(Game stats) {
-//		SaveAndQuitTheGame.savePlayerStats(stats);
-//		System.out.println("autosave");
-//	}
 
 	public double getTotalMassOfCaught() {
 		return totalMassOfCaught;
@@ -156,9 +143,7 @@ public class Game {
 	public void addCurrentlyTotalMassOfCaught(double mass) {
 		this.currentlyTotalMassOfCaught += mass;
 	}
-
 	// market
-
 	public double getPlayerMoney() {
 		return playerMoney;
 	}
@@ -174,5 +159,13 @@ public class Game {
 	public void decreasePlayerMoney(double value) {
 		this.playerMoney -= value;
 	}
-
+	
+	public int getInventoryFishingRodType() {
+		return inventory.getFishingRodType();
+	}
+	
+	public void setInventoryFishingRodType(int fishingRodType) {
+		inventory.setFishingRodType(fishingRodType);
+	}
+	
 }
