@@ -39,14 +39,14 @@ public class Game {
 				
 				double number = random.nextInt(100) + 1;
 				massOfFish = number* inventory.getFishingRodType();
-				System.out.printf("Balığı çektin! %.2f kg 🐠\n", massOfFish);
+				System.out.printf("🐠 %.2f kg\n", massOfFish);
 
 				addToTotalMassOfCaught(massOfFish);
 				addCurrentlyTotalMassOfCaught(massOfFish);
 
 				if (getBestOfTheCaught() < massOfFish) {
 					setBestOfTheCaught(massOfFish);
-					System.out.println("Şu ana kadarki en büyük balığını tuttun. Tebrikler!");
+					System.out.println("Şu ana kadarki en büyük balığını tuttun.");
 				}
 				incrementInventorySlot(); // slottan bir yer azalıyor
 				incrementTotalAmountOfCaught(); // genel adet artıyor
