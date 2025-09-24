@@ -61,7 +61,7 @@ public class Game {
 		this.totalMassOfCaught = 0;
 		this.bestOfTheCaught = 0;
 		this.totalAmountOfCaught = 0;
-		this.playerMoney = 100;
+		this.playerMoney = 1000;
 		this.inventorySlot = 0;
 		this.inventoryMaxSlot = 3;
 		this.currentlyTotalAmountOfCaught = 0;
@@ -146,6 +146,11 @@ public class Game {
 	// market
 	public double getPlayerMoney() {
 		return playerMoney;
+	}
+	
+	public String showPlayerMoney() {
+		String money = String.format("%.2f", playerMoney);
+		return money;
 	}
 
 	public void setPlayerMoney(double playerMoney) {
