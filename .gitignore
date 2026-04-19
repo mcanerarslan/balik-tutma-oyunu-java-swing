@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Derleme çıktı klasörleri
 /bin/
 /build/
@@ -44,3 +45,11 @@ nbdist/
 # İşletim sistemi dosyaları
 .DS_Store
 Thumbs.db
+=======
+bin/
+*.class
+.DS_Store
+.project
+.classpath
+.settings/
+>>>>>>> 48ca3b4 (feat: UI improvements, fish types, and upgrade mechanics)

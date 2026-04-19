@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 0.0
 0.0
 0
@@ -7,3 +8,14 @@
 0
 0.0
 4
+=======
+51.0
+51.0
+1
+100.0
+1
+3
+1
+51.0
+1
+>>>>>>> 48ca3b4 (feat: UI improvements, fish types, and upgrade mechanics)
