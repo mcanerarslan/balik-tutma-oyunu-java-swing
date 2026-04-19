@@ -1,145 +1,74 @@
-<<<<<<< HEAD
-# 🎣 Balık Tutma Oyunu (Java)
+# ❌ Balık Tutma Oyunu ⭕
 
-Bu proje, Java programlama diliyle geliştirilen bir **balık tutma simülasyon oyunudur**. Menü tabanlı yapısıyla kullanıcıya balık tutma, marketten alışveriş yapma, oyuncu gelişimi gibi temel oyun deneyimleri sunar.
+Java Swing kullanılarak geliştirilmiş, modern masaüstü görünümüne sahip ve balık tutma mekanikleriyle zenginleştirilmiş bir oyun projesidir.
 
-> ⚠️ **Proje hâlen geliştirilmektedir.** Java bilgim ilerledikçe yapıyı sadeleştiriyor, sınıf bağımlılıklarını azaltıyor ve yeni özellikler ekliyorum.  
-> 🎯 **Swing konusunda yeterli seviyeye ulaştığımda**, mevcut metin tabanlı menüyü görsel kullanıcı arayüzüne (GUI) dönüştürmeyi planlıyorum.
+## 📸 Oyun Önizleme
+Aşağıdaki ekran görüntüleri, projenin ana oynanış ekranlarını gösterir:
 
----
+![Ana Menü](src/assets/screenshoot/SS-1.png)
+![Balık Tutma Ekranı](src/assets/screenshoot/SS-2.png)
+![Envanter](src/assets/screenshoot/SS-3.png)
+![Market](src/assets/screenshoot/SS-4.png)
+![İstatistikler](src/assets/screenshoot/SS-5.png)
+![Oyun İçi](src/assets/screenshoot/SS-6.png)
 
-## 🚀 Özellikler
+## 🎬 Oynanış Videosu
+Bu videoda oyunun temel işleyişi ve ekran akışı gösterilmektedir:
 
-- Menü konsol tabanlı kullanıcı arayüzü
-- Balık tutma sistemi (kilogram ve tür farkı ile)
-- Oyuncu bakiyesi ve slot yönetimi
-- Marketten ekipman satın alma (olta, slot vb.)
-- Oyun istatistiklerinin dosyaya kaydedilmesi ve yüklenmesi
-- Kodun modüler ve nesne tabanlı yapıda tasarlanması
+[![Balık Tutma Oyunu Demo](https://img.youtube.com/vi/4ydNwRml1M0/0.jpg)](https://www.youtube.com/watch?v=4ydNwRml1M0)
 
----
+> Görsele tıklayarak YouTube üzerinden izleyebilirsiniz.
 
-## 🧱 Sınıf Açıklamaları
+## 🚀 Öne Çıkan Özellikler
 
-| Sınıf | Açıklama |
-|------|----------|
-| `Main.java` | Uygulamanın giriş noktası. Menü akışını başlatır. |
-| `MenuManager.java` | Ana menüyü ve kullanıcı seçimlerini yönetir. |
-| `MarketManager.java` | Market işlemlerini (satın alma, fiyat gösterimi) gerçekleştirir. |
-| `GameManager.java` | Oyuncu bilgilerini ve oyun durumunu tutar. |
-| `GameMechanicsBase.java` | Slot limitleri, fiyat katsayıları gibi sabit mekanikleri tanımlar. |
-| `PlayerStats.java` | Oyuncuya ait istatistikleri (balık adedi, toplam kg, en iyi balık vb.) tutar. |
-| `ControlManager.java` | Kullanıcı girdilerini kontrol eder ve doğrular. |
-| `SaveAndQuitTheGame.java` | Oyuncu verilerini dosyaya kaydeder ve geri yükler. |
+- **Java Swing GUI**: Masaüstünde çalışan görsel kullanıcı arayüzü
+- **Balık Tutma Sistemi**: Farklı ağırlıklarda balık yakalama
+- **Envanter & Slot Yönetimi**: Yakalanan balıkları depolama ve limit yönetimi
+- **Market Sistemi**: Yeni oltalar ve ekipman satın alma
+- **Oyun İstatistikleri**: Toplam yakalanan balık, en iyi balık ve para takibi
+- **Veri Kaydetme**: Oyun verilerini dosyaya kaydedip yükleme
 
----
+## 📥 Release Sürümü
+Projeyi test etmek ve paylaşmak için release JAR dosyası hazırlandı.
 
-## 🛠️ Kurulum ve Çalıştırma
+### Release kullanımı
 
-### 1. Depoyu klonlayın
+1. GitHub `Releases` bölümünden en son `.jar` dosyasını indirin.
+2. Terminal veya komut satırından aşağıdaki komutu çalıştırın:
 
 ```bash
-git clone https://github.com/mcanerarslan/balik-tutma-oyunu.git
-cd balik-tutma-oyunu
+java -jar fishing-game-v1.0.jar
+```
 
-javac Main.java
-java Main.java
-=======
-# 🎣 Fishing Game - Öğrenci Projesi
+> Bu proje Java 8 (JDK 1.8) ile uyumludur.
 
-Bu proje, üniversite öğrencisi olarak geliştirdiğim Java tabanlı balık tutma simülasyon oyunudur. Java Swing kütüphanesini kullanarak GUI geliştirmeyi öğrenmek ve nesne yönelimli programlama prensiplerini uygulamak amacıyla oluşturulmuştur. Oyuncular farklı oltalar kullanarak balık tutabilir, envanterlerini yönetebilir, para kazanabilir ve oyun istatistiklerini kaydedebilir.
+## 🧠 Teknik Detaylar
 
-## 🎯 Proje Hedefleri
+- **Swing tabanlı arayüz**
+- **OOP yapısı**: `Main`, `Game`, `Inventory`, `SaveAndQuitTheGame` sınıfları
+- **Dosya tabanlı kaydetme**: `save/savegame.txt`
+- **Dynamic asset yükleme**: `src/assets` klasöründeki görseller
 
-Bu proje, aşağıdaki becerileri geliştirmek amacıyla geliştirilmiştir:
-- Java Swing ile grafiksel kullanıcı arayüzü tasarımı
-- Nesne yönelimli programlama (OOP) prensipleri
-- Dosya işlemleri ve veri kalıcılığı
-- Rastgele sayı üretimi ve oyun mantığı
-- Modüler kod yapısı ve sınıf tasarımı
+## 📌 Kurulum ve Çalıştırma
 
-## 🛠️ Kullanılan Teknolojiler
+### Kaynak Koddan Çalıştırma
 
-- **Programlama Dili**: Java 8
-- **GUI Framework**: Java Swing
-- **IDE**: Eclipse
-- **Derleme**: javac
-- **Paketleme**: JAR
+```bash
+git clone <repository-url>
+cd fishing-game
+javac -d bin src/*.java
+java -cp bin Main
+```
 
-## ✨ Özellikler
+### Release JAR ile Çalıştırma
 
-- **Balık Tutma Mekaniği**: Rastgele ağırlıkta balıklar yakalama
-- **Envanter Sistemi**: Yakalanan balıkları saklama ve yönetme (maksimum slot limiti)
-- **Para Sistemi**: Balık satışından para kazanma ve harcama
-- **Farklı Oltalar**: Başlangıç, gelişmiş ve premium oltalar (farklı çarpanlar ile)
-- **Market**: Oltaları satın alma ve yükseltme sistemi
-- **İstatistikler**: Toplam yakalanan balık sayısı, toplam ağırlık, en büyük balık
-- **Kaydetme/Yükleme**: Oyun ilerlemesini txt dosyasına kaydetme ve yükleme
-- **Grafiksel Arayüz**: Swing tabanlı kullanıcı dostu arayüz ve görseller
+```bash
+java -jar fishing-game-v1.0.jar
+```
 
 ## 📋 Gereksinimler
 
 - Java 8 (JDK 1.8)
-- Java Swing kütüphanesi (Java SE'de varsayılan olarak gelir)
+- Java Swing
 
-## 🚀 Kurulum ve Çalıştırma
 
-### Kaynak Koddan Çalıştırma
-
-1. Projeyi klonlayın veya indirin:
-   ```
-   git clone <repository-url>
-   cd fishing-game
-   ```
-
-2. Kaynak kodlarını derleyin:
-   ```
-   javac -d bin src/*.java
-   ```
-
-3. Oyunu çalıştırın:
-   ```
-   java -cp bin Main
-   ```
-
-### Release JAR Dosyası ile Çalıştırma
-
-1. Releases bölümünden en son JAR dosyasını indirin (örneğin: `fishing-game-v1.0.jar`).
-
-2. JAR dosyasını çalıştırın:
-   ```
-   java -jar fishing-game-v1.0.jar
-   ```
-
-Bu yöntem için Java 8 yüklü olmalıdır.
-
-## 📸 Oyun Ekran Görüntüleri
-
-![Ana Menü](assets/screenshoot/SS-1.png)
-![Balık Tutma Ekranı](assets/screenshoot/SS-2.png)
-![Envanter](assets/screenshoot/SS-3.png)
-![Market](assets/screenshoot/SS-4.png)
-![İstatistikler](assets/screenshoot/SS-5.png)
-![Oyun İçi](assets/screenshoot/SS-6.png)
-
-## 🎥 Demo Video
-
-Oyunun oynanışı hakkında daha fazla bilgi için aşağıdaki YouTube videosunu izleyebilirsiniz:
-
-[![Fishing Game Demo](https://img.youtube.com/vi/4ydNwRml1M0/0.jpg)](https://youtu.be/4ydNwRml1M0)
-
-## 🔮 Gelecekteki Geliştirmeler
-
-- Çoklu dil desteği
-- Daha fazla balık türü ve özellik
-- Daha gelişmiş grafikler ve animasyonlar
-
-## 📚 Öğrenilen Dersler
-
-Bu proje sayesinde:
-- Java Swing'in temel bileşenlerini öğrendim
-- Event-driven programming kavramını uyguladım
-- Dosya I/O işlemlerini pratik yaptım
-- Kod organizasyonu ve modülerlik önemini anladım
-- Hata yakalama ve exception handling becerilerini geliştirdim
->>>>>>> 48ca3b4 (feat: UI improvements, fish types, and upgrade mechanics)
