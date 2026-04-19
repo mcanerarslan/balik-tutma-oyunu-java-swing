@@ -1,11 +1,10 @@
-<<<<<<< HEAD
-# Derleme çıktı klasörleri
+# Build output
 /bin/
 /build/
 /out/
 /target/
 
-# Paketleme dosyaları
+# Package files
 *.jar
 *.war
 *.ear
@@ -13,11 +12,10 @@
 *.tar.gz
 *.rar
 
-# Derleme dosyaları
+# Compiled classes
 *.class
 
-# IDE ayar dosyaları
-# IntelliJ IDEA
+# IDE files
 .idea/
 *.iml
 *.ipr
@@ -31,25 +29,17 @@
 # NetBeans
 nbproject/private/
 build/
-nbbuild/
+bnbuild/
 dist/
-nbdist/
+bndist/
 .nb-gradle/
 
 # VS Code
 .vscode/
 
-# Log dosyaları
+# Logs
 *.log
 
-# İşletim sistemi dosyaları
+# OS files
 .DS_Store
 Thumbs.db
-=======
-bin/
-*.class
-.DS_Store
-.project
-.classpath
-.settings/
->>>>>>> 48ca3b4 (feat: UI improvements, fish types, and upgrade mechanics)
