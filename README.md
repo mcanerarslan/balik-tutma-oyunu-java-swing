@@ -5,12 +5,20 @@ Java Swing kullanılarak geliştirilmiş, modern masaüstü görünümüne sahip
 ## 📸 Oyun Önizleme
 Aşağıdaki ekran görüntüleri, projenin ana oynanış ekranlarını gösterir:
 
-![Ana Menü](src/assets/screenshoot/SS-1.png)
-![Balık Tutma Ekranı](src/assets/screenshoot/SS-2.png)
-![Envanter](src/assets/screenshoot/SS-3.png)
-![Market](src/assets/screenshoot/SS-4.png)
-![İstatistikler](src/assets/screenshoot/SS-5.png)
-![Oyun İçi](src/assets/screenshoot/SS-6.png)
+<p align="center">
+  <img src="src/assets/screenshoot/SS-1.png" alt="Ana Menü" width="320" />
+  <img src="src/assets/screenshoot/SS-2.png" alt="Balık Tutma Ekranı" width="320" />
+</p>
+
+<p align="center">
+  <img src="src/assets/screenshoot/SS-3.png" alt="Envanter" width="320" />
+  <img src="src/assets/screenshoot/SS-4.png" alt="Market" width="320" />
+</p>
+
+<p align="center">
+  <img src="src/assets/screenshoot/SS-5.png" alt="İstatistikler" width="320" />
+  <img src="src/assets/screenshoot/SS-6.png" alt="Oyun İçi" width="320" />
+</p>
 
 ## 🎬 Oynanış Videosu
 Bu videoda oyunun temel işleyişi ve ekran akışı gösterilmektedir:
